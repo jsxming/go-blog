@@ -54,6 +54,8 @@ func NewRouter() *gin.Engine {
 		apiNoToken.POST("/register", v1.CreateUser)
 		apiNoToken.GET("/articles", v1.SearchArticle)
 		apiNoToken.GET("/article", v1.FindOne)
+		apiNoToken.GET("/types", v1.QueryAllArticleTypes)
+		//apiNoToken.GET("/article", v1.FindOne)
 	}
 
 	return r
