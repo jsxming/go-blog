@@ -23,7 +23,8 @@ type Model struct {
 }
 
 func NewDBEngine(databaseSetting *pkg.DatabaseSettings) error {
-	ormdb, err := gorm.Open(mysql.Open(fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=%t&loc=Local",
+	fmt.Println(databaseSetting.Charset, "adfadf")
+	ormdb, err := gorm.Open(mysql.Open(fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=%t&loc=Local&collation=utf8mb4_unicode_ci",
 		databaseSetting.UserName,
 		databaseSetting.PassWord,
 		databaseSetting.Host,
@@ -65,19 +66,18 @@ type ArticleListItem1 struct {
 	TagName  string `json:"tagName"`
 }
 
-
-func test(){
+func test() {
 	var list []ArticleListItem
 
-	d:=DB.Debug().Table("article as a").
+	d := DB.Debug().Table("article as a").
 		Select("a.id,a.title,a.content,a.user_id,a.description,a.cover_img_url,a.created_at,a.updated_at,b.name as type_name,b.id as type_id,c.name as tag_name,c.id as tag_id").
 		Joins("left join article_type as  b on a.type_id=b.id").
 		Joins("left join article_tag as c on a.tag_id=c.id").
 		Where("is_del=0")
-	e:=d.Scan(&list).Error
+	e := d.Scan(&list).Error
 	fmt.Println(e)
-	for i,v:=range list{
-		fmt.Println(i,v.Id,v.Title,v.TypeName,v.TagName)
+	for i, v := range list {
+		fmt.Println(i, v.Id, v.Title, v.TypeName, v.TagName)
 	}
 }
 

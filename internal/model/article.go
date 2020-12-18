@@ -7,7 +7,7 @@ import (
 type Article struct {
 	*Model
 	Title       string `json:"title" `
-	Content     string `json:"content"`
+	Content     string `json:"content" gorm:"type:string"`
 	Description string `json:"description"`
 	TypeId      uint64 `json:"type"`
 	TagId       uint64 `json:"tag"`
@@ -39,7 +39,7 @@ func (article *Article) UpdateDel() error {
 }
 
 func (article *Article) FindOne() error {
-	return DB.First(article,article.Id).Error
+	return DB.First(article, article.Id).Error
 
 }
 
@@ -47,7 +47,6 @@ type Data struct {
 	Total int64       `json:'total'`
 	List  interface{} `json:"list"`
 }
-
 
 func (article Article) Search(pager util.Pager, startTime, endTime string) (map[string]interface{}, error) {
 	var list []ArticleListItem

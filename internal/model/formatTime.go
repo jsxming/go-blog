@@ -25,14 +25,6 @@ func (t *JSONTime) UnmarshalJSON(data []byte) error {
 	}
 	*t = JSONTime(time.Unix(i/1000, 0))
 	return err
-	// 接收时间字符串
-	//str:=string(data)
-	//if str =="null" || str == ""{
-	//	return nil
-	//}
-	//tempTime,err:=time.Parse(util.TimeLayout,str)
-	//*t = JSONTime(tempTime)
-	//return err
 }
 
 // MarshalJSON on JSONTime format Time field with %Y-%m-%d %H:%M:%S
