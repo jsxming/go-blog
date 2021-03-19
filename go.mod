@@ -17,6 +17,7 @@ require (
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/pelletier/go-toml v1.8.1 // indirect
+	github.com/qiniu/go-sdk/v7 v7.9.2
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/viper v1.7.1
 	golang.org/x/net v0.0.0-20200925080053-05aa5d4ee321 // indirect

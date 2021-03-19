@@ -27,6 +27,7 @@ func NewRouter() *gin.Engine {
 	apiV1.Use(middleware.CheckToken())
 	{
 		apiV1.POST("/upload", common.UploadFile)
+		apiV1.GET("/qiniutoken", common.CreateQinuToken)
 		userApi := apiV1.Group("/user")
 		//userApi.POST("/create", v1.CreateUser)
 		userApi.POST("/update", v1.UpdateUser)
